@@ -1,0 +1,168 @@
+.searchpage {
+  display: flex;
+  background-color: rgba(0,0,0,0.9);
+  /* padding: 0 1.5rem; */
+  height: 100%;
+  width: 100%;
+}
+
+.SearchContent {
+  flex: 1;
+  margin-left: 7%;
+  width: 100%;
+  color: white;
+  overflow: hidden;
+  height: 100%;
+  /* overflow-y: auto; */
+}
+
+.SearchContent_sidebar {
+  flex: 1;
+  margin-left: 15%;
+  width: 100%;
+  color: white;
+  overflow: hidden;
+  height: 100%;
+}
+.SearchVideo {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  height: 40%;
+  margin-top: 20px;
+  min-width: 500px;
+}
+
+.Videobox {
+  height: 40vh;
+  width: 60%;
+  overflow: hidden;
+  border-radius: 10px;
+  min-width: 250px;
+}
+.SearchVideo img {
+  height: 100%;
+  width: 100%;
+}
+
+.VideoDetails {
+  height: 100%;
+  width: 100%;
+}
+.viewsDetails {
+  display: flex;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.418);
+  font-size: 12px;
+  padding: 5px 0;
+}
+h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.channelDetails {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 0;
+  color: rgba(255, 255, 255, 0.445);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.channelDetails img {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+.description {
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.349);
+}
+
+.quality {
+  height: auto;
+  width: fit-content;
+  padding: 4px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.493);
+  background-color: rgba(255, 255, 255, 0.24);
+}
+
+.searchChannel {
+  display: flex;
+  height: 136px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.channelimg {
+  height: 100%;
+  min-width: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.channelimg img {
+  height: 136px;
+  width: 136px;
+  border-radius: 50%;
+  padding: 0 50px;
+}
+
+.channel {
+  height: 100%;
+  width: fit-content;
+  display: block;
+  overflow: hidden;
+}
+
+.channel h4 {
+  margin: 20px 0 0 0;
+}
+
+.channel p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.363);
+}
+
+.video-link {
+  text-decoration: none;
+  color: white;
+}
+
+.ChannelSubscribers {
+  display: flex;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.658);
+  font-size: 12px;
+  padding-top: 15px;
+}
+.subscription {
+  width: 100px;
+  height: 36px;
+  /* padding: 9px; */
+  background-color: aliceblue;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.subscribe {
+    display: flex;
+    width: 20%;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    justify-content: center;
+  }

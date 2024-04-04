@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import Header from "./components/Header";
+import { store } from "./redux/store";
+import Homepage from "./components/pages/Homepage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Searchpage from "./components/pages/Searchpage";
+import Watchpage from "./components/pages/Watchpage";
+import "./index.css";
+import { useState } from "react";
 
+// const router = (
+//   <BrowserRouter>
+//     <Header />
+//     <Routes>
+//       <Route path="/">
+//         <Route path="/" element={<Homepage />} />
+//         <Route path="/results" element={<Searchpage />} />
+//         <Route path="/watch/:id" element={<Watchpage />} />
+//       </Route>
+//     </Routes>
+//   </BrowserRouter>
+// );
 function App() {
+
+  const [sidebar, setSidebar] = useState(true);
+
+  function toggleSidebar() {
+    setSidebar(!sidebar);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header toggleSidebar={toggleSidebar}/>
+          <Routes>
+            <Route path="/">
+              <Route path="/" element={<Homepage sidebar={sidebar}/>} />
+              <Route path="/results" element={<Searchpage sidebar={sidebar}/>} />
+              <Route path="/watch/:id" element={<Watchpage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }

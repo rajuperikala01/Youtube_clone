@@ -1,0 +1,307 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.watch {
+  display: flex;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.945);
+  color: white;
+  overflow: auto;
+}
+.watch::-webkit-scrollbar {
+  width: 10px;
+}
+.watch::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.3);
+}
+.section1 {
+  /* flex: 0.7; */
+  width: 70%;
+  padding: 24px 24px 0px 0;
+  margin: 0px 0px 0px 28px;
+  background-color: black;
+  height: fit-content;
+  
+}
+
+.section2 {
+  width: 30%;
+  padding: 24px 24px 0px 0px;
+  /* display: flex; */
+}
+.Video {
+  width: 100%;
+  height: 70vh;
+  margin-bottom: 0.8rem;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.videocard {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  gap: 10px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.part1 {
+  height: 100%;
+  width: 40%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.link {
+  text-decoration: none;
+}
+.part2 {
+  height: 100%;
+  width: 200px;
+}
+
+.part2 h5 {
+  display: -webkit-box;
+  font-size: 14px;
+  font-weight: 500;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.videocard p {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.views_1 {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail {
+  font-size: 20px;
+  font-weight: 580;
+  margin: 10px 0 8px 0;
+}
+
+.channel1 {
+  display: flex;
+  /* height: 55px; */
+  width: 100%;
+  flex: 1;
+  align-items: center;
+  margin-top: 0.8rem;
+  overflow: hidden;
+}
+
+.channel1 img {
+  height: 100%;
+  width: 10%;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.channelname {
+  height: 100%;
+  width: fit-content;
+  max-width: 300px;
+  overflow: hidden;
+  /* padding-top: 1rem; */
+  cursor: pointer;
+  /* align-items: center; */
+}
+
+.channelname h4 {
+  font-size: 16px;
+  font-weight: 590;
+  word-spacing: 2px;
+}
+.channelname p {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+.subscribe_section {
+  display: flex;
+  width: 50%;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.subscription {
+  width: 20%;
+  height: 100%;
+  padding: 0.4rem;
+  background-color: aliceblue;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.likes {
+  display: flex;
+  max-width: 50%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+.share {
+  display: flex;
+  /* width: 20%; */
+}
+
+.download {
+  display: flex;
+  /* width: 20%; */
+}
+.like {
+  height: 100%;
+  /* width: 25%; */
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff1a;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.like hr {
+  color: rgba(255, 255, 255, 0.103);
+  height: 55%;
+  opacity: 0.5;
+}
+
+.icon {
+  opacity: 0.7;
+}
+
+.channel p {
+  opacity: 0.8;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.like:hover {
+  background-color: #ffffff34;
+}
+
+.iframe {
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 1080px) {
+  .watch {
+    display: block;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.945);
+    color: white;
+    overflow: auto;
+  }
+  .watch::-webkit-scrollbar {
+    width: 7px;
+  }
+  .watch::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.3);
+  }
+  .section1 {
+    /* flex: 0.7; */
+    width: 100%;
+    /* padding: 24px 24px 0px 0; */
+    /* margin: 0px 0px 0px 28px; */
+    background-color: black;
+    height: fit-content;
+    
+  }
+  
+  .section2 {
+    width: 100%;
+    padding: 24px 24px 0px 0px;
+    /* display: flex; */
+    display: none;
+  }
+  .Video {
+    display: flex;
+    width: 100%;
+    height: 70vh;
+    margin-bottom: 0.8rem;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .iframe {
+    height: 100%;
+    width: 80%;
+  } 
+} 
+
+
+@media screen and (max-width: 800px) {
+  .watch {
+    display: block;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.945);
+    color: white;
+    overflow: auto;
+    /* font-size: 1rem; */
+  }
+  .watch::-webkit-scrollbar {
+    width: 7px;
+  }
+  .watch::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.3);
+  }
+  .section1 {
+    /* flex: 0.7; */
+    width: 100%;
+    /* padding: 24px 24px 0px 0; */
+    /* margin: 0px 0px 0px 28px; */
+    background-color: black;
+    height: fit-content;
+    
+  }
+  
+  .section2 {
+    width: 100%;
+    padding: 24px 24px 0px 0px;
+    /* display: flex; */
+    display: none;
+  }
+  .Video {
+    display: flex;
+    width: 100%;
+    height: 70vh;
+    margin-bottom: 0.8rem;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .iframe {
+    height: 100%;
+    width: 100%;
+    margin-left: 0;
+  } 
+}
