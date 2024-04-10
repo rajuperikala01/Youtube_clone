@@ -2,52 +2,74 @@ import React, { useEffect } from "react";
 import "./mainsection.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { getPopularVideos } from "./Container";
 import {
   faChevronRight,
   faCirclePlay,
-  faCircleQuestion,
   faClock,
   faClockRotateLeft,
   faFilm,
-  faFire,
-  faFontAwesome,
+ 
   faGamepad,
-  faGear,
+
   faGraduationCap,
-  faHouse,
+
   faMessage,
-  faMusic,
-  faNewspaper,
+
   faPlay,
-  faPodcast,
+
   faShirt,
   faShoppingBag,
   faSignOut,
   faThumbsUp,
-  faTowerBroadcast,
-  faTrophy,
+ 
   faUser,
   faUsersLine,
 } from "@fortawesome/free-solid-svg-icons";
-import { auth } from "../firebase/firebase";
+import { getAuth } from "firebase/auth";
+import { useDispatch } from "react-redux"
+import { IoMdHome } from "react-icons/io";
+import { SiYoutubeshorts } from "react-icons/si";
+import { MdOutlineSubscriptions } from "react-icons/md";
+import { PiUserSquare } from "react-icons/pi";
+import { GoHistory } from "react-icons/go";
+import { MdPlaylistPlay } from "react-icons/md";
+import { MdOutlineWatchLater } from "react-icons/md";
+import { BiLike } from "react-icons/bi";
+import { BsBag } from "react-icons/bs";
+import { PiFilmSlate } from "react-icons/pi";
+import { SiYoutubegaming } from "react-icons/si";
+import { HiOutlineAcademicCap } from "react-icons/hi2";
+import { MdOutlineFeedback } from "react-icons/md";
+import { PiSignOutThin } from "react-icons/pi";
+import { PiTShirtThin } from "react-icons/pi";
 
 function Sidebar() {
-
+  const auth = getAuth();
+  const dispatch = useDispatch();
   function signout() {
-    auth.signOut()
+    if(auth) {
+      auth.signOut();
+      console.log("Sign out successful");
+      localStorage.clear();
+    }
+    else{
+      console.log("sign out not successful");
+    }
+    
   } 
   return (
     <div className="sidebar">
-      <div className="sidebar_row">
-        <FontAwesomeIcon icon={faHouse} className="icon" />
+      <div className="sidebar_row" onClick={() => getPopularVideos(dispatch)}>
+        <IoMdHome className="icon" />
         <p>Home</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faPlay} className="icon" />
+        <SiYoutubeshorts icon={faPlay} className="icon" />
         <p>Shorts</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faUsersLine} className="icon" />
+        <MdOutlineSubscriptions icon={faUsersLine} className="icon" />
         <p>Subscriptions</p>
       </div>
 
@@ -59,23 +81,23 @@ function Sidebar() {
       </div>
 
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faUser} className="icon" />
+        <PiUserSquare icon={faUser} className="icon" />
         <p>Your Channel</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faClockRotateLeft} className="icon" />
+        <GoHistory icon={faClockRotateLeft} className="icon" />
         <p>History</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faCirclePlay} className="icon" />
+        <MdPlaylistPlay icon={faCirclePlay} className="icon" />
         <p>Your Videos</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faClock} className="icon" />
+        <MdOutlineWatchLater icon={faClock} className="icon" />
         <p>Watch Later</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faThumbsUp} className="icon" />
+        <BiLike icon={faThumbsUp} className="icon" />
         <p>Liked Videos</p>
       </div>
       <hr />
@@ -92,33 +114,33 @@ function Sidebar() {
         <h4>Explore</h4>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faShoppingBag} className="icon" />
+        <BsBag icon={faShoppingBag} className="icon" />
         <p>Shopping</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faFilm} className="icon" />
+        <PiFilmSlate icon={faFilm} className="icon" />
         <p>Flims</p>
       </div> 
         <div className="sidebar_row">
-        <FontAwesomeIcon icon={faGamepad} className="icon" />
+        <SiYoutubegaming icon={faGamepad} className="icon" />
         <p>Gaming</p>
       </div>
       
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faGraduationCap} className="icon" />
+        <HiOutlineAcademicCap icon={faGraduationCap} className="icon" />
         <p>Learning</p>
       </div>
       <div className="sidebar_row">
-        <FontAwesomeIcon icon={faShirt} className="icon" />
+        <PiTShirtThin icon={faShirt} className="icon" />
         <p>Fashion & beauty</p>
     </div>
 
        <div className="sidebar_row">
-         <FontAwesomeIcon icon={faMessage} className="icon" />
+         <MdOutlineFeedback icon={faMessage} className="icon" />
         <p>Feedback</p>
        </div>
       <div className="sidebar_row" onClick={signout}>
-        <FontAwesomeIcon icon={faSignOut} className="icon" />
+        <PiSignOutThin icon={faSignOut} className="icon" />
         <p>signOut</p>
       </div>
     </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { GoHome } from "react-icons/go";
 import { SiYoutubeshorts } from "react-icons/si";
 import { MdOutlineSubscriptions } from "react-icons/md";
@@ -7,7 +6,6 @@ function Minisidebar() {
   return (
     <div className='mini_sidebar'>
       <div className="box_row">
-        {/* <IoMdHome /> */}
         <GoHome />
         <p>Home</p>
       </div>

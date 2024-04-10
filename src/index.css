@@ -1,12 +1,12 @@
 body {
   font-family: "Roboto", sans-serif;
   background-color: rgba(0, 0, 0, 0.95);
-  /* overflow: hidden; */
+  margin: 0;
+  padding: 0;
 }
 
 .App {
   background-color: rgba(66, 63, 63, 0.95);
-  /* height: 100dvh; */
 }
 
 html::-webkit-scrollbar {
@@ -14,6 +14,6 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.7);
-  
+  width: 90%;
+  background-color: rgba(255, 255, 255,0.2);
 }

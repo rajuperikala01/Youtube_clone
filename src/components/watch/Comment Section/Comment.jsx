@@ -1,7 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./comment.css";
-import { faThumbsDown, faThumbsUp, faUser } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
+import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
+import numeral from "numeral";
+
 function Comment({ comment }) {
   const {
       snippet: {
@@ -20,8 +22,8 @@ function Comment({ comment }) {
     <div className="cmSection2">
       <div className="user_image">
         <img
-          src={authorProfileImageUrl}
-          alt="user"
+          src={`${authorProfileImageUrl ? authorProfileImageUrl : "https://www.pngitem.com/pimgs/m/579-5798505_user-placeholder-svg-hd-png-download.png"}`}
+          alt=""
           className="user_img"
         />
       </div>
@@ -30,12 +32,13 @@ function Comment({ comment }) {
           <h5>{authorDisplayName}</h5>
           <p>{moment(publishedAt).fromNow()}</p>
         </div>
-        <p>
+        <p className="comment_text">
           {textDisplay}
         </p>
         <div className="reply">
-          <FontAwesomeIcon icon={faThumbsUp} />
-          <FontAwesomeIcon icon={faThumbsDown} />
+          <AiOutlineLike />
+          {likeCount !== 0 && <p>{numeral(likeCount).format("0.a")}</p>}
+          <AiOutlineDislike />
           <p>Reply</p>
         </div>
       </div>

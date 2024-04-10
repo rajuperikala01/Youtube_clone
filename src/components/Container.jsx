@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 export const getPopularVideos = async (dispatch) => {
   try {
-    const url = `${process.env.REACT_APP_API_URL}/videos?part=snippet,contentDetails,statistics&chart=mostPopular&maxResults=9&regionCode=IN&key=${process.env.REACT_APP_API_KEY}`;
+    const url = `${process.env.REACT_APP_API_URL}/videos?part=snippet,contentDetails,statistics&chart=mostPopular&maxResults=9&key=${process.env.REACT_APP_API_KEY}`;
     dispatch(status("loading"));
     const response = await fetch(url);
     const videos = await response.json();
@@ -30,7 +30,7 @@ export const getPopularVideos = async (dispatch) => {
     dispatch(status("fail"));
   }
 };
-function Container({sidebar}) {
+function Container({ sidebar }) {
   const list = [1, 2, 3, 4, 5, 6];
   const dispatch = useDispatch();
   const result = useSelector((state) => state.status.status);
@@ -42,7 +42,8 @@ function Container({sidebar}) {
   }, []);
 
   async function fetchData() {
-    const next = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics,id&chart=mostPopular&maxResults=9&regionCode=IN&pageToken=${pageToken}&key=${process.env.REACT_APP_API_KEY}`;
+    console.log(pageToken);
+    const next = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics,id&chart=mostPopular&maxResults=9&pageToken=${pageToken}&key=${process.env.REACT_APP_API_KEY}`;
 
     try {
       const response = await fetch(next);
@@ -54,7 +55,7 @@ function Container({sidebar}) {
   }
 
   return (
-    <div className={`${sidebar ? "hero_section_sidebar": "hero_section"}`}>
+    <div className={`${sidebar ? "hero_section_sidebar" : "hero_section"}`}>
       <Recommended />
       <InfiniteScroll
         dataLength={
@@ -73,15 +74,19 @@ function Container({sidebar}) {
           <div className="container">
             {videos.map((video) => (
               <>
-              {typeof video === "object" ?
-              (<Video
-                video={video}
-                id={video.id}
-                loading={lazy}
-                key={video.id}
-              />):(
-                <div className="loaded"><h3>All Cought up</h3></div>
-              )}</>
+                {typeof video === "object" ? (
+                  <Video
+                    video={video}
+                    id={video.id}
+                    loading={lazy}
+                    key={video.id}
+                  />
+                ) : (
+                  <div className="loaded">
+                    <h3>All Cought up</h3>
+                  </div>
+                )}
+              </>
             ))}
           </div>
         ) : (

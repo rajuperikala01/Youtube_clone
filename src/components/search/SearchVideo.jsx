@@ -3,12 +3,13 @@ import "./searchcontainer.css";
 import { useState, useEffect } from "react";
 import numeral from "numeral";
 import { Link } from "react-router-dom";
+import { MdOutlineSensors } from "react-icons/md";
 
 function SearchVideo({ video }) {
   const [channelMediumUrl, setchannelMediumUrl] = useState("");
   const [viewCount, setViewcount] = useState(null);
   const [likes, setLikes] = useState(null);
-  const [subscribers, setSubscribers] = useState(null)
+  const [subscribers, setSubscribers] = useState(null);
   const {
     id: { videoId },
     snippet: {
@@ -18,6 +19,7 @@ function SearchVideo({ video }) {
       description,
       thumbnails: { medium },
       channelTitle,
+      liveBroadcastContent,
     },
   } = video;
   async function channelDetails() {
@@ -28,7 +30,7 @@ function SearchVideo({ video }) {
       if (channelDetails.items.length > 0) {
         const channelMediumUrl =
           channelDetails.items[0].snippet.thumbnails.medium.url;
-        const subscribers = channelDetails.items[0].statistics.subscriberCount
+        const subscribers = channelDetails.items[0].statistics.subscriberCount;
         setchannelMediumUrl(channelMediumUrl);
         setSubscribers(numeral(subscribers).format("0.a"));
       }
@@ -46,7 +48,7 @@ function SearchVideo({ video }) {
         const viewCount = video.items[0].statistics.viewCount;
         setViewcount(numeral(viewCount).format("0.a"));
         const likeCount = video.items[0].statistics.likeCount;
-        setLikes(numeral(likeCount).format('0.a'));
+        setLikes(numeral(likeCount).format("0.a"));
       }
     } catch (error) {
       console.log(error.message);
@@ -59,16 +61,16 @@ function SearchVideo({ video }) {
     if (videoId) {
       videoDetails();
     }
-  }, [channelId,videoId]);
+  }, [channelId, videoId]);
 
   const state = {
-    channelName: channelTitle ,
+    channelName: channelTitle,
     viewCount: viewCount,
     image: channelMediumUrl,
     subscribers: subscribers,
     videoTitle: title,
-    likeCount: likes
-  }
+    likeCount: likes,
+  };
   return (
     <Link to={`/watch/${videoId}`} className="video-link" state={state}>
       <div className="SearchVideo">
@@ -79,7 +81,6 @@ function SearchVideo({ video }) {
           <h4>{title}</h4>
           <div className="viewsDetails">
             <p>{viewCount} views</p>
-            {/* <FontAwesomeIcon icon={faCircleDot} /> */}
             <p>{moment(publishedAt).fromNow()}</p>
           </div>
           <div className="channelDetails">
@@ -89,6 +90,15 @@ function SearchVideo({ video }) {
           <div className="description">
             <p>{description}</p>
           </div>
+          {liveBroadcastContent === "live" && (
+            <div className="liveContent">
+              <div className="liveBroadcast">
+                <MdOutlineSensors />
+                <p>Live</p>
+              </div>
+              <span>New</span>
+            </div>
+          )}
         </div>
       </div>
     </Link>

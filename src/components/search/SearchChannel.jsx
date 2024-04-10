@@ -8,11 +8,10 @@ function SearchChannel({video}) {
       <div className="channelimg">
         <img src={medium.url} alt="" />
       </div>
-      <div className="channel">
+      <div className="channel123">
         <h4>{channelTitle}</h4>
         <div className="ChannelSubscribers">
             <p>@{channelTitle}</p>
-            {/* <FontAwesomeIcon icon={faCircleDot} /> */}
             <p>4M subscribers</p>
         </div>
         <div className="description">
@@ -21,7 +20,7 @@ function SearchChannel({video}) {
         
       </div>
       <div className="subscribe">
-            <p className='subscription'>Subscribe</p>
+          <p>Subscribe</p>
         </div>
     </div>
     </div>

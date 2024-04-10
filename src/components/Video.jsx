@@ -3,15 +3,14 @@ import "./video.css";
 import moment from "moment";
 import { Link, useNavigate } from "react-router-dom";
 import numeral from "numeral";
-
-
+import { MdOutlineSensors } from "react-icons/md";
 function Video({ video }) {
   const [subscribers, setSubscribers] = useState();
   const [channelMediumUrl, setchannelMediumUrl] = useState("");
   const [viewCount, setViewcount] = useState();
   const [likeCount, setLikeCount] = useState();
-  const  navigate = useNavigate();
-  let id, title, medium, channelTitle, publishedAt, channelId,categoryId;
+  const navigate = useNavigate();
+  let id, title, medium, channelTitle, publishedAt, channelId, categoryId, live;
   if (video.kind === "youtube#video") {
     id = video.id;
     title = video.snippet.title;
@@ -20,6 +19,7 @@ function Video({ video }) {
     publishedAt = video.snippet.publishedAt;
     channelId = video.snippet.channelId;
     categoryId = video.snippet.categoryId;
+    live = video.snippet.liveBroadcastContent;
   }
 
   if (video.kind === "youtube#searchResult") {
@@ -30,6 +30,7 @@ function Video({ video }) {
     publishedAt = video.snippet.publishedAt;
     channelId = video.snippet.channelId;
     categoryId = video.snippet.categoryId;
+    live = video.snippet.liveBroadcastContent;
   }
 
   async function channelDetails() {
@@ -76,35 +77,40 @@ function Video({ video }) {
     }
   }, [channelId]);
 
-const state = {
-  channelName: channelTitle ,
-  viewCount: viewCount,
-  image: channelMediumUrl,
-  subscribers: subscribers,
-  videoTitle: title,
-  likeCount: likeCount,
-  category: categoryId,
-}
+  const state = {
+    channelName: channelTitle,
+    viewCount: viewCount,
+    image: channelMediumUrl,
+    subscribers: subscribers,
+    videoTitle: title,
+    likeCount: likeCount,
+    category: categoryId,
+  };
   return (
-     <Link to={`watch/${id}`} state={state} className="video">
-      
-        <img src={medium.url} alt="" />
-        <div className="details">
-          <div className="thumbnail">
-            <img src={channelMediumUrl} alt="channelimg" />
-            <h4>{title}</h4>
-            <span></span>
-          </div>
-          <div className="views">
-            <p>{channelTitle}</p>
-            <div className="views_details">
-              <p>{viewCount} views </p>
-              <p>{moment(publishedAt).fromNow()}</p>
-            </div>
-          </div>
+    <Link to={`watch/${id}`} state={state} className="video">
+      <img src={medium.url} alt="" />
+      <div className="details">
+        <div className="thumbnail1">
+          <img src={channelMediumUrl} alt="channelimg" />
+          <h4>{title}</h4>
+          <span></span>
         </div>
-  
-     </Link>
+        <div className="views">
+          <p>{channelTitle}</p>
+          <div className="views_details">
+            <p>{viewCount} views </p>
+            <p>{moment(publishedAt).fromNow()}</p>
+            {live === "live" && (
+            <div className="live">
+              <MdOutlineSensors />
+              <p>Live</p>
+            </div>
+          )}
+          </div>
+          
+        </div>
+      </div>
+    </Link>
   );
 }
 export default Video;

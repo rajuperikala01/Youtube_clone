@@ -1,10 +1,8 @@
 import "./mainsection.css";
 import { getPopularVideos } from "./Container";
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addVideos } from "../redux/features/videoSlice";
 import { status } from "../redux/features/statusSlice";
-
-
 
 function Recommended() {
   const dispatch = useDispatch();
@@ -12,7 +10,7 @@ function Recommended() {
   const categories = [
     "All",
     "News",
-    "Vaddamanu",
+    "Space News",
     "JavaScript",
     "Web Development",
     "Html",
@@ -23,14 +21,13 @@ function Recommended() {
     "Andhra Pradesh",
   ];
 
-async function fetchData(category) {
-  dispatch(status("loading"));
-    if(category === "All"){
+  async function fetchData(category) {
+    dispatch(status("loading"));
+    if (category === "All") {
       await getPopularVideos(dispatch);
-    }
-    else {
+    } else {
       try {
-        const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${category}&regionCode=IN&type=video&key=AIzaSyAPQr3Y167enQ488bHRgnei0_aOdzKsC9s`;
+        const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${category}&regionCode=IN&type=video&key=${process.env.REACT_APP_API_KEY}`;
         const respose = await fetch(url);
         const videos = await respose.json();
         dispatch(addVideos(videos));
@@ -43,8 +40,12 @@ async function fetchData(category) {
   return (
     <div className="recommended">
       {categories.map((category) => (
-        <div className="item" onClick={() =>fetchData(category)} key={category}>
-          <h5 >{category}</h5>
+        <div
+          className="item"
+          onClick={() => fetchData(category)}
+          key={category}
+        >
+          <h5>{category}</h5>
         </div>
       ))}
     </div>

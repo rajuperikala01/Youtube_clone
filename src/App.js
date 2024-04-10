@@ -7,23 +7,12 @@ import Searchpage from "./components/pages/Searchpage";
 import Watchpage from "./components/pages/Watchpage";
 import "./index.css";
 import { useState } from "react";
+import ScrolltoTop from "./ScrolltoTop";
 
-// const router = (
-//   <BrowserRouter>
-//     <Header />
-//     <Routes>
-//       <Route path="/">
-//         <Route path="/" element={<Homepage />} />
-//         <Route path="/results" element={<Searchpage />} />
-//         <Route path="/watch/:id" element={<Watchpage />} />
-//       </Route>
-//     </Routes>
-//   </BrowserRouter>
-// );
 function App() {
 
   const [sidebar, setSidebar] = useState(true);
-
+  const [input , setInput] = useState("");
   function toggleSidebar() {
     setSidebar(!sidebar);
   }
@@ -31,11 +20,12 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <BrowserRouter>
-          <Header toggleSidebar={toggleSidebar}/>
+        <ScrolltoTop />
+          <Header toggleSidebar={toggleSidebar} input={input} setInput={setInput}/>
           <Routes>
             <Route path="/">
               <Route path="/" element={<Homepage sidebar={sidebar}/>} />
-              <Route path="/results" element={<Searchpage sidebar={sidebar}/>} />
+              <Route path="/results" element={<Searchpage sidebar={sidebar} input={input}/>} />
               <Route path="/watch/:id" element={<Watchpage />} />
             </Route>
           </Routes>

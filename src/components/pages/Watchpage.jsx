@@ -5,9 +5,8 @@ import Comments from "../watch/Comment Section/Comments";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Comment from "../watch/Comment Section/Section2";
+import Comment from "../watch/Comment Section/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Skeleton from "../Skeleton";
 import {
   addComments,
   addNextComments,
@@ -39,12 +38,11 @@ function Watchpage({ state }) {
   const related = useSelector(
     (state) => state.recommended.recommendedVideos.items
   );
-  // const videos = useSelector((state) => state.videos.videos.items)
   const comment_Status = useSelector((state) => state.commentStatus);
   
 
   async function getComments() {
-    const url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=${id}&key=AIzaSyD0uux5F3lMChcqwvZlUM9xvoASBgPRZkU`;
+    const url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=${id}&key=${process.env.REACT_APP_API_KEY}`;
     try {
       const commentResponse = await fetch(url);
       const comments = await commentResponse.json();
@@ -67,7 +65,7 @@ function Watchpage({ state }) {
   }
 
   async function fetchData() {
-    const url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=${id}&pageToken=${nextPage}&key=AIzaSyD0uux5F3lMChcqwvZlUM9xvoASBgPRZkU`;
+    const url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&videoId=${id}&pageToken=${nextPage}&key=${process.env.REACT_APP_API_KEY}`;
     try {
       const response = await fetch(url);
       const nextComments = await response.json();
@@ -98,21 +96,11 @@ function Watchpage({ state }) {
     relatedVideos();
   }, []);
 
-  // useEffect(() => {
-  //   getVideos();
-  // },[pageToken]);
-
   return (
     <InfiniteScroll
       dataLength={comments? comments.length : 0}
       next={fetchData}
       hasMore={true}
-      loader={<Skeleton />}
-      endMessage={
-        <p style={{ textAlign: "center" }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
     >
       <div className="watch">
         <div className="section1">
@@ -121,8 +109,10 @@ function Watchpage({ state }) {
               className="iframe"
               src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=0`}
               allowFullScreen
-              frameBorder="0"
+              frameborder="0"
               title={id}
+              rel="0"
+              
             ></iframe>
           </div>
           <h2 className="thumbnail">{videoTitle}</h2>
@@ -142,7 +132,6 @@ function Watchpage({ state }) {
             </>
           )}
 
-          {/* <Comments /> */}
         </div>
         <div className="section2">
           {related?.map((video) => (

@@ -5,10 +5,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import "./comment.css";
+import {auth} from "../../../firebase/firebase";
+import {useAuthState} from "react-firebase-hooks/auth"
 
 function Comments({total}) {
   const [input, setInput] = useState("");
   const [active, setActive] = useState(false);
+
+  const [user] = useAuthState(auth);
   function handleChange(e) {
     setInput(e.target.value);
   }
@@ -25,7 +29,7 @@ function Comments({total}) {
       <div className="inputsection">
         <div className="img">
           <img
-            src="https://yt3.googleusercontent.com/f251QfvprQ5hKnis5bAWMQMWENg8EdRZWxBaRrobTXV4WFGtwuxm-qTI80HohMmJQoaWebxEfg=s900-c-k-c0x00ffffff-no-rj"
+            src={`${user ? user.photoURL : 'https://www.pngitem.com/pimgs/m/579-5798505_user-placeholder-svg-hd-png-download.png'}`}
             alt="name"
           />
         </div>
@@ -37,7 +41,7 @@ function Comments({total}) {
             value={input}
             onChange={handleChange}
           />
-          <hr />
+          <hr className={`${active === true ? "line-atv" : "line-dtv"}`}/>
         </div>
       </div>
       {active && (

@@ -1,16 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = "";
+const initialState = {
+    videos:{}
+};
 
 const searchSlice = createSlice({
-    name:'input',
+    name: 'search',
     initialState,
     reducers: {
-        inputterm: (state, action) => {
-            return action.payload;
+        searchvideos: (state, action) => {
+            state.videos = action.payload;
+        },
+        addSearchvideos: (state, action) => {
+            state.videos = {
+                ...state.videos,
+                items: state.videos.items.concat(action.payload.items),
+                nextPageToken: action.payload.nextPageToken
+            };
         }
     }
-})
+});
 
 export default searchSlice.reducer;
-export const {inputterm} = searchSlice.actions;
+export const { searchvideos, addSearchvideos } = searchSlice.actions;

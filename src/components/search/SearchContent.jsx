@@ -3,42 +3,52 @@ import SearchVideo from './SearchVideo';
 import './searchcontainer.css';
 import { useSelector, useDispatch } from 'react-redux';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { nextPageVideos } from '../../redux/features/videoSlice';
+import { addSearchvideos } from '../../redux/features/searchSlice';
 import { status } from '../../redux/features/statusSlice';
-import Skeleton from '../Skeleton';
+import Playlist from './Playlist';
+import Searchskeleton from './Searchskeleton';
 
-function SearchContent({sidebar}) {
+
+function SearchContent({sidebar, input}) {
   const dispatch = useDispatch();
-  const input = useSelector(state => state.input);
-  const videos = useSelector(state => state.videos.videos.items);
-  const fetchStatus = useSelector(state => state.status.status);
-  const pageToken = useSelector(state => state.videos.videos.nextPageToken);
-
+  const videos = useSelector(state => state.input.videos.items);
+  // const fetchStatus = useSelector(state => state.status.status);
+  const pageToken = useSelector(state => state.input.videos.nextPageToken);
+  const list = [1,2,3,4,5,6,7,8,9]
   async function fetchNewData() {
     dispatch(status("loading"));
     try {
-      const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=related&regionCode=IN&pageToken=${pageToken}&key=${process.env.REACT_APP_API_KEY}`;
-      const respose = await fetch(url);
-      const videos = await respose.json();
-      dispatch(nextPageVideos(videos));
+      const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&q=${input}&regionCode=IN&pageToken=${pageToken}&key=${process.env.REACT_APP_API_KEY}`;
+      const response = await fetch(url);
+      const videos = await response.json();
+      dispatch(addSearchvideos(videos));
       dispatch(status("success"));
-      // console.log(videos);
     } catch (error) {
       dispatch(status("fail"));
-      console.log(error.message);
     }
   }
 
   return (
     <div className={`${sidebar ? "SearchContent_sidebar" : "SearchContent"}`}>
       <InfiniteScroll
-          dataLength={fetchStatus === "success" ? videos?.length : 0}
+          dataLength={videos ? videos?.length : 0}
           next={fetchNewData}
           hasMore={true}
-          loader={<Skeleton />}
+          loader={<p>Loading..</p>}
       >
-      {fetchStatus === 'success' ? 
-        videos?.map((video,index) => video.id.kind === "youtube#video" ? <SearchVideo video={video} key={`video-${video.id.videoId}/${index}`}/> : <SearchChannel video={video} key={`channel-${video.id.channelId}-/xy${index}`}/>) : <h3>sorry</h3>
+      {videos ?
+        videos?.map((video,index) =>{
+          if(video) {
+            if(video.id.kind === "youtube#video") {
+              return <SearchVideo video={video} key={`video-${video.id.videoId}/${index}`}/>
+            }
+            if(video.id.kind === "youtube#channel") {
+              return <SearchChannel video={video} key={`channel-${video.id.channelId}-/xy${index}`}/>
+            }
+            if(video.id.kind === "youtube#playlist") {
+              return <Playlist video={video} />
+            }
+          }}) : list.map(() => <Searchskeleton />)
       }
       </InfiniteScroll>
     </div>

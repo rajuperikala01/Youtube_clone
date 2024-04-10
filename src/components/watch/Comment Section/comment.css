@@ -1,5 +1,5 @@
 .comments {
-    background-color: #000000;
+  background-color: #000000;
 }
 
 .cmsection1 {
@@ -21,142 +21,266 @@
 }
 
 .inputsection {
-    display: flex;
-    width: 100%;
-    gap: 10px;
-    height: 8vh;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  width: 100%;
+  gap: 0px;
+  align-items: center;
 }
 
-.addcomment {
-    width: 98%;
-    margin: 0 10px;
-}
-
-.hrdisabled{
-    background-color: rgba(255, 255, 255, 0.664);
-}
-.addcomment input {
-    width: 100%;
-    background-color: transparent;
-    outline: none;
-    height: 10%;
-    border: none;
-    /* width: 800px; */
-    color: white;
-}
 .inputsection img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 }
+.addcomment {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.addcomment input {
+  width: 90%;
+  background-color: transparent;
+  outline: none;
+  padding: 3px;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.line-atv {
+  margin: 0;
+  padding: 0;
+}
+
+.line-dtv {
+  margin: 0;
+  padding: 0;
+}
+
 .emoji {
-    /* margin-top: 10px; */
-    display: flex;
-    /* display: none; */
-    align-items: center;
-    height: 2rem;
-    padding-left: 4rem;
-    justify-content: space-between;
-    align-items: start;
+  /* margin-top: 10px; */
+  display: flex;
+  /* display: none; */
+  align-items: center;
+  height: 2rem;
+  padding-left: 4rem;
+  justify-content: space-between;
+  align-items: start;
 }
 
 .smiley {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
 }
+
 .buttons {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    text-align: end;
-    height: 100%;
-    gap: 5px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  text-align: end;
+  height: 100%;
+  gap: 5px;
 }
 .btn {
-    height: 100%;
-    width: 30%;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 50ms ease;
-    cursor: pointer;
-    /* margin-right: 10px; */
-    /* padding: 10px; */
+  height: 100%;
+  width: 30%;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 50ms ease;
+  cursor: pointer;
+  /* margin-right: 10px; */
+  /* padding: 10px; */
 }
 
 .btn:hover {
-    background-color: rgba(211, 211, 211, 0.192);
+  background-color: rgba(211, 211, 211, 0.192);
 }
 
 .btn_1:disabled {
-    height: 100%;
-    width: 30%;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    background-color: rgba(211, 211, 211, 0.158);
-    color: rgba(255, 255, 255, 0.37);
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 50ms ease;
+  height: 100%;
+  width: 30%;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: rgba(211, 211, 211, 0.158);
+  color: rgba(255, 255, 255, 0.37);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 50ms ease;
 }
 
 .btn_1:enabled {
-    height: 36px;
-    width: 30%;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    background-color: rgb(67, 148, 253);
-    color: #000000;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 50ms ease;
-    cursor: pointer;
+  height: 36px;
+  width: 30%;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: rgb(67, 148, 253);
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 50ms ease;
+  cursor: pointer;
 }
 
 .cmSection2 {
-    display: flex;
-    gap: 10px;
-    height: fit-content;
-    width: 100%;
-    margin-top: 2rem;
+  display: flex;
+  gap: 10px;
+  height: fit-content;
+  width: 90%;
+  margin-top: 2rem;
+  overflow: hidden;
 }
 
+.comment_text {
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.user_img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
 .user_name {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 7px;
+  align-items: center;
+}
+.user_name h5 {
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.reply {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+}
+
+.reply p{
+    font-size: 14px;
+}
+
+.user_name p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.466);
+}
+
+@media screen and (max-width: 480px) {
+  .comments {
+    background-color: #000000;
+    padding: 0 0;
+    margin-left: 10px;
+  }
+
+  .cmsection1 {
+    gap: 0px;
+    height: 10%;
+    margin: 10px 0px;
+  }
+
+  .cmsection1 h3 {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .btn {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+  }
+  .sort {
+    gap: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .line-atv {
+    opacity: 0.6;
+  }
+  .line-dtv {
+    opacity: 0.2;
+  }
+
+  .emoji {
+    padding-left: 3rem;
+  }
+  .smiley {
+    font-size: 1rem;
+    height: 24px;
+    width: 24px;
+  }
+  .buttons {
+    width: 90%;
+  }
+
+  .btn_1:disabled {
+    font-size: 12px;
+  }
+
+  .btn_1:enabled {
+    font-size: 12px;
+  }
+
+  .inputsection {
+    margin-top: 20px;
+  }
+.inputsection img {
+  height: 30px;
+  width: 30px;
+}
+  .subscription {
+    font-size: 12px;
+  }
+  .cmSection2 {
+    gap: 10px;
+    padding: 0 0;
+    margin-left: 10px;
+  }
+  
+  .comment_text {
+    font-size: 12px;
+  }
+  
+  .user_img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  .user_name {
     display: flex;
     gap: 5px;
     margin-bottom: 7px;
     align-items: center;
-}
-.user_name h5 {
-    font-weight: 500;
-    font-size: 14px;
-}
-.reply {
-    display: flex;
-    gap: 20px;
-    margin-top: 10px;
-    align-items: center;
-}
-.user_img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-}
+  }
+  .user_name h5 {
+    font-size: 12px;
+  }
+  .reply {
+    gap: 5px;
+    font-size: 16px;
+  }
 
-.user_name p {
+  .reply p {
+    font-size: 12px;
+  }
+  .user_name p {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.466);
-}
-
-.user_details p {
-    color: rgba(255, 255, 255, 0.932);
+  }
 }
