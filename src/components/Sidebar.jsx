@@ -1,33 +1,7 @@
-import React, { useEffect } from "react";
 import "./mainsection.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { getPopularVideos } from "./Container";
-import {
-  faChevronRight,
-  faCirclePlay,
-  faClock,
-  faClockRotateLeft,
-  faFilm,
- 
-  faGamepad,
-
-  faGraduationCap,
-
-  faMessage,
-
-  faPlay,
-
-  faShirt,
-  faShoppingBag,
-  faSignOut,
-  faThumbsUp,
- 
-  faUser,
-  faUsersLine,
-} from "@fortawesome/free-solid-svg-icons";
-import { getAuth } from "firebase/auth";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import { IoMdHome } from "react-icons/io";
 import { SiYoutubeshorts } from "react-icons/si";
 import { MdOutlineSubscriptions } from "react-icons/md";
@@ -43,33 +17,38 @@ import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { MdOutlineFeedback } from "react-icons/md";
 import { PiSignOutThin } from "react-icons/pi";
 import { PiTShirtThin } from "react-icons/pi";
-import { RiArrowRightSLine } from "react-icons/ri";function Sidebar() {
-  const auth = getAuth();
+import { RiArrowRightSLine } from "react-icons/ri";
+import { auth } from "../firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+function Sidebar() {
   const dispatch = useDispatch();
+  const [user] = useAuthState(auth);
   function signout() {
-    if(auth) {
+    if (user) {
       auth.signOut();
       console.log("Sign out successful");
       localStorage.clear();
-    }
-    else{
+    } else {
       console.log("sign out not successful");
     }
-    
-  } 
+  }
   return (
     <div className="sidebar">
-      <Link to={"/"}
-       className="sidebar_row" onClick={() => getPopularVideos(dispatch)}>
+      <Link
+        to={"/"}
+        className="sidebar_row"
+        onClick={() => getPopularVideos(dispatch)}
+      >
         <IoMdHome className="icon" />
         <p>Home</p>
       </Link>
       <div className="sidebar_row">
-        <SiYoutubeshorts icon={faPlay} className="icon" />
+        <SiYoutubeshorts  className="icon" />
         <p>Shorts</p>
       </div>
       <div className="sidebar_row">
-        <MdOutlineSubscriptions icon={faUsersLine} className="icon" />
+        <MdOutlineSubscriptions  className="icon" />
         <p>Subscriptions</p>
       </div>
 
@@ -81,23 +60,23 @@ import { RiArrowRightSLine } from "react-icons/ri";function Sidebar() {
       </div>
 
       <div className="sidebar_row">
-        <PiUserSquare icon={faUser} className="icon" />
+        <PiUserSquare  className="icon" />
         <p>Your Channel</p>
       </div>
       <div className="sidebar_row">
-        <GoHistory icon={faClockRotateLeft} className="icon" />
+        <GoHistory  className="icon" />
         <p>History</p>
       </div>
       <div className="sidebar_row">
-        <MdPlaylistPlay icon={faCirclePlay} className="icon" />
+        <MdPlaylistPlay  className="icon" />
         <p>Your Videos</p>
       </div>
       <div className="sidebar_row">
-        <MdOutlineWatchLater icon={faClock} className="icon" />
+        <MdOutlineWatchLater  className="icon" />
         <p>Watch Later</p>
       </div>
       <div className="sidebar_row">
-        <BiLike icon={faThumbsUp} className="icon" />
+        <BiLike  className="icon" />
         <p>Liked Videos</p>
       </div>
       <hr />
@@ -108,41 +87,43 @@ import { RiArrowRightSLine } from "react-icons/ri";function Sidebar() {
         <img src="https://picsum.photos/40" alt="Backbench Coder" />
         <p>Backbench Coder</p>
       </div>
-      
+
       <hr />
       <div className="heading">
         <h4>Explore</h4>
       </div>
       <div className="sidebar_row">
-        <BsBag icon={faShoppingBag} className="icon" />
+        <BsBag  className="icon" />
         <p>Shopping</p>
       </div>
       <div className="sidebar_row">
-        <PiFilmSlate icon={faFilm} className="icon" />
+        <PiFilmSlate className="icon" />
         <p>Flims</p>
-      </div> 
-        <div className="sidebar_row">
-        <SiYoutubegaming icon={faGamepad} className="icon" />
+      </div>
+      <div className="sidebar_row">
+        <SiYoutubegaming  className="icon" />
         <p>Gaming</p>
       </div>
-      
+
       <div className="sidebar_row">
-        <HiOutlineAcademicCap icon={faGraduationCap} className="icon" />
+        <HiOutlineAcademicCap className="icon" />
         <p>Learning</p>
       </div>
       <div className="sidebar_row">
-        <PiTShirtThin icon={faShirt} className="icon" />
+        <PiTShirtThin className="icon" />
         <p>Fashion & beauty</p>
-    </div>
-
-       <div className="sidebar_row">
-         <MdOutlineFeedback icon={faMessage} className="icon" />
-        <p>Feedback</p>
-       </div>
-      <div className="sidebar_row" onClick={signout}>
-        <PiSignOutThin icon={faSignOut} className="icon" />
-        <p>signOut</p>
       </div>
+
+      <div className="sidebar_row">
+        <MdOutlineFeedback  className="icon" />
+        <p>Feedback</p>
+      </div>
+      {user && (
+        <div className="sidebar_row" onClick={signout}>
+          <PiSignOutThin className="icon" />
+          <p>signOut</p>
+        </div>
+      )}
     </div>
   );
 }
