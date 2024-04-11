@@ -2,13 +2,15 @@ import { GoHome } from "react-icons/go";
 import { SiYoutubeshorts } from "react-icons/si";
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { CiYoutube } from "react-icons/ci";
+import { Link } from "react-router-dom";
+import "./mainsection.css"
 function Minisidebar() {
   return (
     <div className='mini_sidebar'>
-      <div className="box_row">
+      <Link to={"/"} className="box_row">
         <GoHome />
         <p>Home</p>
-      </div>
+      </Link>
       <div className="box_row">
         <SiYoutubeshorts />
         <p>Shorts</p>
