@@ -52,7 +52,6 @@ hr {
   height: 80vh;
   position: fixed;
   z-index: 100;
-  color: rgba(255, 255, 255, 0.85);
   overflow: auto;
   padding: 0 1rem 100px 0.5rem;
   width: 12%;
@@ -67,6 +66,8 @@ hr {
   padding: 0 0 0 1rem;
   cursor: pointer;
   transition: all 50ms ease-out 10ms;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .sidebar_row:hover {
@@ -136,13 +137,14 @@ hr {
 .heading h4 {
   font-size: 16px;
   font-weight: 550;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .icon {
-  /* height: 20px;
-  width: 20px; */
   font-size: 23px;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .recommended {

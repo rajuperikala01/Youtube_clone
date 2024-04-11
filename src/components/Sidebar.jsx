@@ -43,8 +43,7 @@ import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { MdOutlineFeedback } from "react-icons/md";
 import { PiSignOutThin } from "react-icons/pi";
 import { PiTShirtThin } from "react-icons/pi";
-
-function Sidebar() {
+import { RiArrowRightSLine } from "react-icons/ri";function Sidebar() {
   const auth = getAuth();
   const dispatch = useDispatch();
   function signout() {
@@ -60,10 +59,11 @@ function Sidebar() {
   } 
   return (
     <div className="sidebar">
-      <div className="sidebar_row" onClick={() => getPopularVideos(dispatch)}>
+      <Link to={"/"}
+       className="sidebar_row" onClick={() => getPopularVideos(dispatch)}>
         <IoMdHome className="icon" />
         <p>Home</p>
-      </div>
+      </Link>
       <div className="sidebar_row">
         <SiYoutubeshorts icon={faPlay} className="icon" />
         <p>Shorts</p>
@@ -76,7 +76,7 @@ function Sidebar() {
       <hr />
       <div className="heading">
         <h4>
-          You <FontAwesomeIcon icon={faChevronRight} className="icon" />
+          You <RiArrowRightSLine className="icon" />
         </h4>
       </div>
 

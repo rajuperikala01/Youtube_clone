@@ -34,7 +34,6 @@ function SearchContent({sidebar, input}) {
           dataLength={videos ? videos?.length : 0}
           next={fetchNewData}
           hasMore={true}
-          loader={<p>Loading..</p>}
       >
       {videos ?
         videos?.map((video,index) =>{
